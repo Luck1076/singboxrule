@@ -122,24 +122,24 @@
         "tag": "cn",
         "type": "remote",
         "format": "source",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset-compatible/cn.json",
-        "download_detour": "♻️ 自动选择",
+        "url": "https://gh-proxy.com/https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset-compatible/cn.json",
+        "download_detour": "direct",
         "update_interval": "1d"
       },
       {
         "tag": "steam",
         "type": "remote",
         "format": "source",
-        "url": "https://github.com/Luck1076/singboxrule/blob/main/steam.json",
-        "download_detour": "♻️ 自动选择",
+        "url": "https://gh-proxy.com/https://github.com/Luck1076/singboxrule/blob/main/steam.json",
+        "download_detour": "direct",
         "update_interval": "1d"
       },
       {
         "tag": "cnip",
         "type": "remote",
         "format": "source",
-        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset-compatible/cnip.json",
-        "download_detour": "♻️ 自动选择",
+        "url": "https://gh-proxy.com/https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset-compatible/cnip.json",
+        "download_detour": "direct",
         "update_interval": "1d"
       }
 
