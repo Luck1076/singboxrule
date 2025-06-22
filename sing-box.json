@@ -102,7 +102,8 @@
       },
       {
         "rule_set": [
-          "cn"
+          "cn",
+          "cnip"
         ],
         "action": "route",
         "outbound": "direct"
@@ -121,18 +122,27 @@
         "tag": "cn",
         "type": "remote",
         "format": "source",
-        "url": "https://ghfast.top/https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset-compatible/cn.json",
-        "download_detour": "direct",
-        "update_interval": "12h"
+        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset-compatible/cn.json",
+        "download_detour": "♻️ 自动选择",
+        "update_interval": ""
       },
       {
         "tag": "steam",
         "type": "remote",
         "format": "source",
-        "url": "https://ghfast.top/https://github.com/Luck1076/singboxrule/blob/main/steam.json",
-        "download_detour": "direct",
-        "update_interval": "12h"
+        "url": "https://github.com/Luck1076/singboxrule/blob/main/steam.json",
+        "download_detour": "♻️ 自动选择",
+        "update_interval": ""
+      },
+      {
+        "tag": "cnip",
+        "type": "remote",
+        "format": "source",
+        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset-compatible/cnip.json",
+        "download_detour": "♻️ 自动选择",
+        "update_interval": ""
       }
+
     ],
     "final": "♻️ 自动选择",
     "auto_detect_interface": true
