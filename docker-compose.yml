@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  sub-store:
+    image: xream/sub-store:latest
+    container_name: sub-store
+    restart: always
+    volumes:
+      - /opt/substore/data:/opt/app/data
+    environment:
+      - SUB_STORE_FRONTEND_BACKEND_PATH=/[自定义记得修改,保留/]
+    ports:
+      - 3001:3001
+    stdin_open: true
+    tty: true
