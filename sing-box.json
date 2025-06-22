@@ -89,6 +89,19 @@
         "ip_is_private": true,
         "action": "route",
         "outbound": "direct"
+      },{
+        "rule_set": [
+          "game"
+        ],
+        "action": "route",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": [
+          "proxy"
+        ],
+        "action": "route",
+        "outbound": "all-auto"
       },
       {
         "clash_mode": "Global",
@@ -102,14 +115,6 @@
       },
       {
         "action": "resolve"
-      },
-      {
-        "rule_set": [
-          "cn_ip",
-          "cn_domain"
-        ],
-        "action": "route",
-        "outbound": "cn"
       }
     ],
     "rule_set": [
@@ -126,26 +131,26 @@
         "format": "binary",
         "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo-lite/geosite/cn.srs",
         "download_detour": "direct"
+      },
+      {
+        "tag": "proxy",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghfast.top/https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset-compatible/proxy.srs",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "game",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghfast.top/https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset-compatible/games.srs",
+        "download_detour": "direct"
       }
     ],
-    "final": "final",
+    "final": "direct",
     "auto_detect_interface": true
   },
   "outbounds": [
-    {
-      "tag": "proxy",
-      "type": "selector",
-      "outbounds": [
-        "hk-auto",
-        "tw-auto",
-        "jp-auto",
-        "sg-auto",
-        "us-auto",
-        "all-auto",
-        "direct"
-      ],
-      "default": "all-auto"
-    },
     {
       "tag": "all-auto",
       "type": "urltest",
@@ -159,7 +164,6 @@
       "type": "selector",
       "outbounds": [
         "direct",
-        "proxy",
         "hk-auto",
         "tw-auto",
         "jp-auto",
@@ -173,37 +177,6 @@
       "tag": "direct",
       "type": "direct"
     },
-    {
-      "tag": "cn",
-      "type": "selector",
-      "outbounds": [
-        "proxy",
-        "direct",
-        "hk-auto",
-        "tw-auto",
-        "jp-auto",
-        "sg-auto",
-        "us-auto",
-        "all-auto"
-      ],
-      "default": "direct"
-    },
-    {
-      "tag": "final",
-      "type": "selector",
-      "outbounds": [
-        "proxy",
-        "direct",
-        "hk-auto",
-        "tw-auto",
-        "jp-auto",
-        "sg-auto",
-        "us-auto",
-        "all-auto"
-      ],
-      "default": "proxy"
-    },
-    
     {
       "tag": "hk-auto",
       "type": "urltest",
