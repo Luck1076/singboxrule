@@ -91,7 +91,7 @@
         "outbound": "direct"
       },{
         "rule_set": [
-          "game"
+          "steam"
         ],
         "action": "route",
         "outbound": "direct"
@@ -140,10 +140,10 @@
         "download_detour": "direct"
       },
       {
-        "tag": "game",
+        "tag": "steam",
         "type": "remote",
-        "format": "binary",
-        "url": "https://ghfast.top/https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset-compatible/games.srs",
+        "format": "source",
+        "url": "https://ghfast.top/https://github.com/Luck1076/singboxrule/blob/main/steam.json",
         "download_detour": "direct"
       }
     ],
