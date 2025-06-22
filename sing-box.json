@@ -71,11 +71,31 @@
             "auto_route": true,
             "auto_redirect": true,
             "sniff": true,
-            "stack": "system"
+            "sniff_opts": {
+                "enabled": true,
+                "dest_port": true,
+                "metadata": true,
+                "protocol": [
+                    "bittorrent",
+                    "dht"
+                ],
+                "stack": "system"
+            }
         }
     ],
     "outbounds": [],
-    "route": {},
+    "route": {
+        "rules": [
+            {
+                "type": "field",
+                "protocol": [
+                    "bittorrent",
+                    "dht"
+                ],
+                "outbound": "direct"
+            }
+        ]
+    },
     "experimental": {
         "cache_file": {
             "enabled": true,
