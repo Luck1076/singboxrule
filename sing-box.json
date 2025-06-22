@@ -154,7 +154,7 @@
         "tag": "googleip",
         "type": "remote",
         "format": "source",
-        "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/blob/sing/geo-lite/geoip/google.json",
+        "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/blob/sing/geo/geoip/google.json",
         "download_detour": "direct",
         "update_interval": "1d"
       },
@@ -162,7 +162,7 @@
         "tag": "google",
         "type": "remote",
         "format": "source",
-        "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/blob/sing/geo-lite/geosite/google.json",
+        "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/blob/sing/geo/geosite/google.json",
         "download_detour": "direct",
         "update_interval": "1d"
       }
