@@ -41,9 +41,12 @@
                 "steam.cdn.on.net",
                 "steam.cdn.orcon.net.nz",
                 "steam.cdn.slingshot.co.nz",
-                "steam.cdn.webra.ru"
+                "steam.cdn.webra.ru",
+                "steamcdn-a.akamaihd.net"
             ],
             "domain_suffix": [
+                "*.cm.steampowered.com",
+                "*.steamserver.net",
                 "steamstat.com",
                 "steamgames.com",
                 "akamaihd.net",

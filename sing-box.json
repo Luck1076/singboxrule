@@ -9,7 +9,7 @@
       {
         "tag": "google",
         "address": "https://8.8.8.8/dns-query",
-        "detour": "proxy"
+        "detour": "all-auto"
       },
       {
         "tag": "ali",
@@ -52,7 +52,7 @@
         "rewrite_ttl": 1
       },
       {
-        "rule_set": "cn_domain",
+        "rule_set": "cn",
         "action": "route",
         "server": "ali"
       }
@@ -91,7 +91,12 @@
         "outbound": "direct"
       },
       {
-        "rule_set": "steam",
+        "clash_mode": "Global",
+        "action": "route",
+        "outbound": "GLOBAL"
+      },
+      {
+        "clash_mode": "Direct",
         "action": "route",
         "outbound": "direct"
       },
@@ -103,12 +108,7 @@
         "outbound": "direct"
       },
       {
-        "clash_mode": "Global",
-        "action": "route",
-        "outbound": "GLOBAL"
-      },
-      {
-        "clash_mode": "Direct",
+        "rule_set": "steam",
         "action": "route",
         "outbound": "direct"
       },
@@ -134,7 +134,7 @@
         "update_interval": "12h"
       }
     ],
-    "final": "direct",
+    "final": "all-auto",
     "auto_detect_interface": true
   },
   "outbounds": [
