@@ -8,9 +8,72 @@
         }
     },
     "dns": {
-
+        "servers": [
+            {
+                "tag": "dns_direct",
+                "address": [
+                    "223.5.5.5",
+                    "119.29.29.29"
+                ],
+                "address_strategy": "prefer_ipv4 ",
+                "strategy": "prefer_ipv4 ",
+                "detour": "直连"
+            },
+            {
+                "tag": "dns_proxy",
+                "address": [
+                    "https://dns.cloudflare.com/dns-query",
+                    "https://dns.google/dns-query"
+                ],
+                "address_resolver": "dns_direct",
+                "address_strategy": "prefer_ipv4 ",
+                "strategy": "prefer_ipv4 ",
+                "detour": "节点选择"
+            },
+            {
+                "tag": "dns_block",
+                "address": "rcode://name_error"
+            }
+        ],
+        "rules": [
+            {
+                "outbound": "all",
+                "server": "dns_direct"
+            },
+            {
+                "clash_mode": "Direct",
+                "server": "dns_direct",
+                "disable_cache": true
+            },
+            {
+                "clash_mode": "Global",
+                "server": "dns_proxy",
+                "disable_cache": true
+            },
+            {
+                "rule_set": "geoip-cn",
+                "outbound": "direct"
+            },
+            {
+                "rule_set": "geosite-cn",
+                "outbound": "direct"
+            }
+        ]
     },
-    "inbounds": [],
+    "inbounds": [
+        {
+            "type": "tun",
+            "tag": "tun-in",
+            "address": "172.18.0.1/30",
+            "interface_name": "tun0",
+            "mtu": 9000,
+            "gso": true,
+            "auto_route": true,
+            "auto_redirect": true,
+            "sniff": true,
+            "stack": "system"
+        }
+    ],
     "outbounds": [],
     "route": {},
     "experimental": {
@@ -21,8 +84,8 @@
         "clash_api": {
             "external_controller": "0.0.0.0:9090",
             "external_ui": "ui",
-            "external_ui_download_url": "https://ghfast.top/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
-            "external_ui_download_detour": "direct"
+            "external_ui_download_url": "",
+            "external_ui_download_detour": ""
         }
     }
 }
