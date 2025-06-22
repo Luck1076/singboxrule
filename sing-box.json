@@ -102,18 +102,18 @@
       },
       {
         "rule_set": [
-          "gamedownload"
-        ],
-        "action": "route",
-        "outbound": "gamedownload"
-      },
-      {
-        "rule_set": [
           "steam",
           "steamcn"
         ],
         "action": "route",
         "outbound": "steam"
+      },
+      {
+        "rule_set": [
+          "gamedownload"
+        ],
+        "action": "route",
+        "outbound": "gamedownload"
       },
       {
         "rule_set": [
@@ -267,7 +267,7 @@
       ],
       "default": "direct"
     },
-     {
+    {
       "tag": "gamedownload",
       "type": "selector",
       "outbounds": [
