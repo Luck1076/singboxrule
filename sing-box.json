@@ -97,10 +97,10 @@
       },
       {
         "rule_set": [
-          "proxy"
+          "cn"
         ],
         "action": "route",
-        "outbound": "all-auto"
+        "outbound": "direct"
       },
       {
         "clash_mode": "Global",
@@ -118,18 +118,10 @@
     ],
     "rule_set": [
       {
-        "tag": "cn_domain",
+        "tag": "cn",
         "type": "remote",
-        "format": "binary",
-        "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo-lite/geosite/cn.srs",
-        "download_detour": "direct",
-        "update_interval": "12h"
-      },
-      {
-        "tag": "proxy",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://ghfast.top/https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset-compatible/proxy.srs",
+        "format": "source",
+        "url": "https://ghfast.top/https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset-compatible/cn.json",
         "download_detour": "direct",
         "update_interval": "12h"
       },
