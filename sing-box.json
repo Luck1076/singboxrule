@@ -89,7 +89,8 @@
         "ip_is_private": true,
         "action": "route",
         "outbound": "direct"
-      },{
+      },
+      {
         "rule_set": [
           "steam"
         ],
@@ -118,13 +119,6 @@
       }
     ],
     "rule_set": [
-      {
-        "tag": "cn_ip",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/cn.srs",
-        "download_detour": "direct"
-      },
       {
         "tag": "cn_domain",
         "type": "remote",
