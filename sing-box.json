@@ -134,7 +134,7 @@
         "update_interval": "12h"
       }
     ],
-    "final": "all-auto",
+    "final": "♻️ 自动选择",
     "auto_detect_interface": true
   },
   "outbounds": [
