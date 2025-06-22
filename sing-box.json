@@ -70,24 +70,14 @@
             "gso": true,
             "auto_route": true,
             "auto_redirect": true,
-            "sniff": true,
-            "sniff_opts": {
-                "enabled": true,
-                "dest_port": true,
-                "metadata": true,
-                "protocol": [
-                    "bittorrent",
-                    "dht"
-                ],
-                "stack": "system"
-            }
+            "stack": "system"
         }
     ],
     "outbounds": [],
     "route": {
         "rules": [
             {
-                "type": "field",
+                "type": "inline",
                 "protocol": [
                     "bittorrent",
                     "dht"
