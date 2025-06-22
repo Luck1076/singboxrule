@@ -102,6 +102,14 @@
       },
       {
         "rule_set": [
+          "google",
+          "googleip"
+        ],
+        "action": "route",
+        "outbound": "🐸 google"
+      },
+      {
+        "rule_set": [
           "cn",
           "cnip"
         ],
@@ -141,8 +149,23 @@
         "url": "https://gh-proxy.com/https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset-compatible/cnip.json",
         "download_detour": "direct",
         "update_interval": "1d"
+      },
+      {
+        "tag": "googleip",
+        "type": "remote",
+        "format": "source",
+        "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/blob/sing/geo-lite/geoip/google.json",
+        "download_detour": "direct",
+        "update_interval": "1d"
+      },
+      {
+        "tag": "google",
+        "type": "remote",
+        "format": "source",
+        "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/blob/sing/geo-lite/geosite/google.json",
+        "download_detour": "direct",
+        "update_interval": "1d"
       }
-
     ],
     "final": "♻️ 自动选择",
     "auto_detect_interface": true
@@ -160,7 +183,7 @@
       "tag": "GLOBAL",
       "type": "selector",
       "outbounds": [
-       "direct",
+        "direct",
         "🇨🇳 台湾节点-自动",
         "🇯🇵 日本节点-自动",
         "🇸🇬 新加坡节点-自动",
@@ -187,6 +210,21 @@
         "♻️ 自动选择"
       ],
       "default": "♻️ 自动选择"
+    },
+    {
+      "tag": "🐸 google",
+      "type": "selector",
+      "outbounds": [
+        "🐸 手动切换",
+        "direct",
+        "🇨🇳 台湾节点-自动",
+        "🇯🇵 日本节点-自动",
+        "🇸🇬 新加坡节点-自动",
+        "🇺🇲 美国节点-自动",
+        "🇭🇰 香港节点-自动",
+        "♻️ 自动选择"
+      ],
+      "default": "🐸 手动切换"
     },
     {
       "tag": "🇨🇳 台湾节点-自动",
@@ -220,7 +258,7 @@
       "interval": "1m",
       "tolerance": 50
     },
-     {
+    {
       "tag": "🇭🇰 香港节点-自动",
       "type": "urltest",
       "outbounds": [],
