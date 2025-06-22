@@ -74,7 +74,9 @@
         }
     ],
     "route": {
+        "auto_detect_interface": true,
         "rules": [
+            
             {
                 "action": "sniff",
                 "sniffer": [
@@ -121,16 +123,44 @@
                 "clash_mode": "Direct",
                 "action": "route",
                 "outbound": "direct"
+            },
+            {
+                "rule_set": [
+                    "cn",
+                    "cn-lite"
+                ],
+                "action": "route",
+                "outbound": "dircet"
+            },
+            {
+                "rule_set": "gamecn",
+                "action": "route",
+                "outbound": "dircet"
             }
         ],
         "rule_set": [
             {
-                "tag": "",
+                "tag": "gamecn",
                 "type": "remote",
-                "format": "binary",
-                "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo-lite/geoip/apple.srs",
+                "format": "source",
+                "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset-compatible/games-cn.json",
+                "download_detour": "all-auto"
+            },
+            {
+                "tag": "cn",
+                "type": "remote",
+                "format": "source",
+                "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset-compatible/cn.json",
+                "download_detour": "all-auto"
+            },
+            {
+                "tag": "cn-lite",
+                "type": "remote",
+                "format": "source",
+                "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset-compatible/cn-lite.json",
                 "download_detour": "all-auto"
             }
+            
         ]
     },
     "experimental": {
