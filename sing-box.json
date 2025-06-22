@@ -73,9 +73,32 @@
             "stack": "system"
         }
     ],
-    "outbounds": [],
     "route": {
         "rules": [
+            {
+                "action": "sniff",
+                "sniffer": [
+                    "http",
+                    "tls",
+                    "quic",
+                    "dns",
+                    "bittorrent"
+                ],
+                "timeout": "500ms"
+            },
+            {
+                "type": "logical",
+                "mode": "or",
+                "rules": [
+                    {
+                        "port": 53
+                    },
+                    {
+                        "protocol": "dns"
+                    }
+                ],
+                "action": "hijack-dns"
+            },
             {
                 "type": "inline",
                 "protocol": [
@@ -83,6 +106,30 @@
                     "dht"
                 ],
                 "outbound": "direct"
+            },
+            {
+                "ip_is_private": true,
+                "action": "route",
+                "outbound": "direct"
+            },
+            {
+                "clash_mode": "Global",
+                "action": "route",
+                "outbound": "GLOBAL"
+            },
+            {
+                "clash_mode": "Direct",
+                "action": "route",
+                "outbound": "direct"
+            }
+        ],
+        "rule_set": [
+            {
+                "tag": "apple_ip",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo-lite/geoip/apple.srs",
+                "download_detour": "direct"
             }
         ]
     },
@@ -97,5 +144,96 @@
             "external_ui_download_url": "",
             "external_ui_download_detour": ""
         }
-    }
+    },
+    "outbounds": [
+        {
+            "tag": "direct",
+            "type": "direct"
+        },
+        {
+            "tag": "all-auto",
+            "type": "urltest",
+            "outbounds": [],
+            "url": "https://www.gstatic.com/generate_204",
+            "interval": "5m",
+            "tolerance": 50
+        },
+        {
+            "tag": "proxy",
+            "type": "selector",
+            "outbounds": [
+                "hk-auto",
+                "tw-auto",
+                "jp-auto",
+                "sg-auto",
+                "us-auto",
+                "all-auto",
+                "direct"
+            ],
+            "default": "all-auto"
+        },
+        {
+            "tag": "GLOBAL",
+            "type": "selector",
+            "outbounds": [
+                "direct",
+                "proxy",
+                "hk-auto",
+                "tw-auto",
+                "jp-auto",
+                "sg-auto",
+                "us-auto",
+                "all-auto"
+            ],
+            "default": "direct"
+        },
+        {
+            "tag": "hk-auto",
+            "type": "urltest",
+            "outbounds": [],
+            "url": "https://www.gstatic.com/generate_204",
+            "interval": "5m",
+            "tolerance": 50
+        },
+        {
+            "tag": "tw-auto",
+            "type": "urltest",
+            "outbounds": [],
+            "url": "https://www.gstatic.com/generate_204",
+            "interval": "5m",
+            "tolerance": 50
+        },
+        {
+            "tag": "jp-auto",
+            "type": "urltest",
+            "outbounds": [],
+            "url": "https://www.gstatic.com/generate_204",
+            "interval": "5m",
+            "tolerance": 50
+        },
+        {
+            "tag": "sg-auto",
+            "type": "urltest",
+            "outbounds": [],
+            "url": "https://www.gstatic.com/generate_204",
+            "interval": "5m",
+            "tolerance": 50
+        },
+        {
+            "tag": "us-auto",
+            "type": "urltest",
+            "outbounds": [],
+            "url": "https://www.gstatic.com/generate_204",
+            "interval": "5m",
+            "tolerance": 50
+        },
+        {
+            "tag": "all-auto",
+            "type": "urltest",
+            "outbounds": [],
+            "url": "https://www.gstatic.com/generate_204",
+            "interval": "5m",
+            "tolerance": 50
+        }
+    ]
 }
