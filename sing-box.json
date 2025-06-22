@@ -139,7 +139,7 @@
   },
   "outbounds": [
     {
-      "tag": "all-auto",
+      "tag": "♻️ 自动选择",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -150,13 +150,13 @@
       "tag": "GLOBAL",
       "type": "selector",
       "outbounds": [
-        "direct",
-        "hk-auto",
-        "tw-auto",
-        "jp-auto",
-        "sg-auto",
-        "us-auto",
-        "all-auto"
+       "direct",
+        "🇨🇳 台湾节点-自动",
+        "🇯🇵 日本节点-自动",
+        "🇸🇬 新加坡节点-自动",
+        "🇺🇲 美国节点-自动",
+        "🇭🇰 香港节点-自动",
+        "♻️ 自动选择"
       ],
       "default": "direct"
     },
@@ -165,7 +165,21 @@
       "type": "direct"
     },
     {
-      "tag": "hk-auto",
+      "tag": "🐸 手动切换",
+      "type": "selector",
+      "outbounds": [
+        "direct",
+        "🇨🇳 台湾节点-自动",
+        "🇯🇵 日本节点-自动",
+        "🇸🇬 新加坡节点-自动",
+        "🇺🇲 美国节点-自动",
+        "🇭🇰 香港节点-自动",
+        "♻️ 自动选择"
+      ],
+      "default": "♻️ 自动选择"
+    },
+    {
+      "tag": "🇨🇳 台湾节点-自动",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -173,7 +187,7 @@
       "tolerance": 50
     },
     {
-      "tag": "tw-auto",
+      "tag": "🇯🇵 日本节点-自动",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -181,7 +195,7 @@
       "tolerance": 50
     },
     {
-      "tag": "jp-auto",
+      "tag": "🇸🇬 新加坡节点-自动",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -189,15 +203,15 @@
       "tolerance": 50
     },
     {
-      "tag": "sg-auto",
+      "tag": "🇺🇲 美国节点-自动",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "1m",
       "tolerance": 50
     },
-    {
-      "tag": "us-auto",
+     {
+      "tag": "🇭🇰 香港节点-自动",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
