@@ -64,7 +64,7 @@
                 "cdn-ws.content.steamchina.com",
                 "cdn-qc.content.steamchina.com",
                 "cdn-ali.content.steamchina.com",
-                "*.steamcontent.com",
+                
                 "steamusercontent-a.akamaihd.net",
                 "ssl-lvlt.cdn.ea.com",
                 "origin-a.akamaihd.net",
@@ -140,7 +140,8 @@
                 "lv.queniujq.cn",
                 "xz.pphimalayanrt.com",
                 "steamchina.com",
-                "gstore.val.manlaxy.com"
+                "gstore.val.manlaxy.com",
+                "*.steamcontent.com"
             ]
         }
     ]
