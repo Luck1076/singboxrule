@@ -91,36 +91,18 @@
         "outbound": "direct"
       },
       {
-        "clash_mode": "Global",
-        "action": "route",
-        "outbound": "GLOBAL"
-      },
-      {
-        "clash_mode": "Direct",
-        "action": "route",
-        "outbound": "direct"
-      },
-       {
-        "rule_set": [
-          "github"
-        ],
-        "action": "route",
-        "outbound": "github"
-      },
-      {
-        "rule_set": [
-          "steam",
-          "steamcn"
-        ],
-        "action": "route",
-        "outbound": "steam"
-      },
-      {
         "rule_set": [
           "gamedownload"
         ],
         "action": "route",
         "outbound": "gamedownload"
+      },
+      {
+        "rule_set": [
+          "github"
+        ],
+        "action": "route",
+        "outbound": "github"
       },
       {
         "rule_set": [
@@ -139,6 +121,16 @@
         "outbound": "direct"
       },
       {
+        "clash_mode": "Global",
+        "action": "route",
+        "outbound": "GLOBAL"
+      },
+      {
+        "clash_mode": "Direct",
+        "action": "route",
+        "outbound": "direct"
+      },
+      {
         "action": "resolve"
       }
     ],
@@ -148,22 +140,6 @@
         "type": "remote",
         "format": "source",
         "url": "https://gh-proxy.com/https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset-compatible/cn.json",
-        "download_detour": "direct",
-        "update_interval": "1d"
-      },
-      {
-        "tag": "steam",
-        "type": "remote",
-        "format": "source",
-        "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/blob/sing/geo/geosite/steam.json",
-        "download_detour": "direct",
-        "update_interval": "1d"
-      },
-      {
-        "tag": "steamcn",
-        "type": "remote",
-        "format": "source",
-        "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/blob/sing/geo/geosite/steam@cn.json",
         "download_detour": "direct",
         "update_interval": "1d"
       },
@@ -199,7 +175,7 @@
         "download_detour": "direct",
         "update_interval": "1d"
       },
-       {
+      {
         "tag": "github",
         "type": "remote",
         "format": "source",
@@ -268,21 +244,6 @@
       "default": "🐸 手动切换"
     },
     {
-      "tag": "steam",
-      "type": "selector",
-      "outbounds": [
-        "🐸 手动切换",
-        "direct",
-        "🇨🇳 台湾节点-自动",
-        "🇯🇵 日本节点-自动",
-        "🇸🇬 新加坡节点-自动",
-        "🇺🇲 美国节点-自动",
-        "🇭🇰 香港节点-自动",
-        "♻️ 自动选择"
-      ],
-      "default": "direct"
-    },
-    {
       "tag": "gamedownload",
       "type": "selector",
       "outbounds": [
@@ -297,7 +258,7 @@
       ],
       "default": "direct"
     },
-     {
+    {
       "tag": "github",
       "type": "selector",
       "outbounds": [
