@@ -1,10 +1,5 @@
 {
   "dns": {
-    "fakeip": {
-      "enabled": true,
-      "inet4_range": "198.18.0.0/15",
-      "inet6_range": "fc00::/18"
-    },
     "servers": [
       {
         "tag": "google",
@@ -15,10 +10,6 @@
         "tag": "ali",
         "address": "https://223.5.5.5/dns-query",
         "detour": "direct"
-      },
-      {
-        "tag": "fakeip",
-        "address": "fakeip"
       }
     ],
     "rules": [
@@ -34,22 +25,8 @@
         "server": "ali"
       },
       {
-        "clash_mode": "Global",
-        "action": "route",
-        "server": "fakeip"
-      },
-      {
         "query_type": "HTTPS",
         "action": "reject"
-      },
-      {
-        "query_type": [
-          "A",
-          "AAAA"
-        ],
-        "action": "route",
-        "server": "fakeip",
-        "rewrite_ttl": 1
       },
       {
         "rule_set": "cn",
@@ -68,7 +45,8 @@
           "http",
           "tls",
           "quic",
-          "dns"
+          "dns",
+          "bittorrent"
         ],
         "timeout": "500ms"
       },
@@ -98,6 +76,35 @@
         "outbound": "gamedownload"
       },
       {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "port": [
+              6881,
+              6882,
+              54656,
+              54657
+            ],
+            "network": "tcp"
+          },
+          {
+            "port": [
+              6881,
+              6882,
+              54656,
+              54657
+            ],
+            "network": "udp"
+          },
+          {
+            "protocol": "bittorrent"
+          }
+        ],
+        "action": "route",
+        "outbound": "🐸 qbt专用"
+      },
+      {
         "rule_set": [
           "github"
         ],
@@ -119,6 +126,13 @@
         ],
         "action": "route",
         "outbound": "direct"
+      },
+      {
+        "rule_set": [
+          "proxy"
+        ],
+        "action": "route",
+        "outbound": "🐸 手动切换"
       },
       {
         "clash_mode": "Global",
@@ -182,9 +196,16 @@
         "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/blob/sing/geo/geosite/github.json",
         "download_detour": "direct",
         "update_interval": "1d"
+      },
+      {
+        "tag": "proxy",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/geolocation-!cn.srs",
+        "download_detour": "direct"
       }
     ],
-    "final": "🐸 手动切换",
+    "final": "direct",
     "auto_detect_interface": true
   },
   "outbounds": [
@@ -195,6 +216,15 @@
       "url": "https://www.gstatic.com/generate_204",
       "interval": "1m",
       "tolerance": 50
+    },
+    {
+      "tag": "🐸 手动选择",
+      "type": "selector",
+      "outbounds": [
+        "♻️ 自动选择",
+        "🐸 手动切换"
+      ],
+      "default": "♻️ 自动选择"
     },
     {
       "tag": "GLOBAL",
@@ -274,6 +304,36 @@
       "default": "🐸 手动切换"
     },
     {
+      "tag": "🐸 qbt专用",
+      "type": "selector",
+      "outbounds": [
+        "🐸 手动切换",
+        "direct",
+        "🇨🇳 台湾节点-自动",
+        "🇯🇵 日本节点-自动",
+        "🇸🇬 新加坡节点-自动",
+        "🇺🇲 美国节点-自动",
+        "🇭🇰 香港节点-自动",
+        "♻️ 自动选择"
+      ],
+      "default": "direct"
+    },
+      {
+      "tag": "proxy",
+      "type": "selector",
+      "outbounds": [
+        "🐸 手动切换",
+        "direct",
+        "🇨🇳 台湾节点-自动",
+        "🇯🇵 日本节点-自动",
+        "🇸🇬 新加坡节点-自动",
+        "🇺🇲 美国节点-自动",
+        "🇭🇰 香港节点-自动",
+        "♻️ 自动选择"
+      ],
+      "default": "♻️ 自动选择"
+    },
+    {
       "tag": "🇨🇳 台湾节点-自动",
       "type": "urltest",
       "outbounds": [],
@@ -347,7 +407,7 @@
     },
     "cache_file": {
       "enabled": true,
-      "store_fakeip": true
+      "store_fakeip": false
     }
   },
   "log": {
