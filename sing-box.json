@@ -184,7 +184,7 @@
         "update_interval": "1d"
       }
     ],
-    "final": "♻️ 自动选择",
+    "final": "🐸 手动切换",
     "auto_detect_interface": true
   },
   "outbounds": [
