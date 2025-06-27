@@ -104,6 +104,7 @@
         "action": "route",
         "outbound": "🐸 qbt专用"
       },
+      
       {
         "rule_set": [
           "github"
@@ -119,6 +120,13 @@
         "action": "route",
         "outbound": "🐸 google"
       },
+        {
+        "rule_set": [
+          "proxy"
+        ],
+        "action": "route",
+        "outbound": "proxy"
+      },
       {
         "rule_set": [
           "cn",
@@ -126,13 +134,6 @@
         ],
         "action": "route",
         "outbound": "direct"
-      },
-      {
-        "rule_set": [
-          "proxy"
-        ],
-        "action": "route",
-        "outbound": "🐸 手动切换"
       },
       {
         "clash_mode": "Global",
@@ -205,7 +206,7 @@
         "download_detour": "direct"
       }
     ],
-    "final": "direct",
+    "final": "🐸 手动选择",
     "auto_detect_interface": true
   },
   "outbounds": [
