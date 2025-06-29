@@ -80,31 +80,12 @@
         "mode": "or",
         "rules": [
           {
-            "port": [
-              6881,
-              6882,
-              54656,
-              54657
-            ],
-            "network": "tcp"
-          },
-          {
-            "port": [
-              6881,
-              6882,
-              54656,
-              54657
-            ],
-            "network": "udp"
-          },
-          {
             "protocol": "bittorrent"
           }
         ],
         "action": "route",
         "outbound": "🐸 qbt专用"
       },
-      
       {
         "rule_set": [
           "github"
@@ -120,7 +101,7 @@
         "action": "route",
         "outbound": "🐸 google"
       },
-        {
+      {
         "rule_set": [
           "proxy"
         ],
