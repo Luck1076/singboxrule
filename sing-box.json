@@ -183,8 +183,8 @@
       {
         "tag": "proxy",
         "type": "remote",
-        "format": "source",
-        "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/geolocation-!cn.json",
+        "format": "binary",
+        "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/geolocation-!cn.srs",
         "download_detour": "direct"
       },
       {
@@ -212,11 +212,16 @@
       "type": "selector",
       "outbounds": [
         "♻️ 自动选择",
-        "🐸 手动切换"
+        "direct",
+        "🇨🇳 台湾节点-自动",
+        "🇯🇵 日本节点-自动",
+        "🇸🇬 新加坡节点-自动",
+        "🇺🇲 美国节点-自动",
+        "🇭🇰 香港节点-自动"
       ],
       "default": "♻️ 自动选择"
     },
-      {
+    {
       "tag": "漏网之鱼",
       "type": "selector",
       "outbounds": [
@@ -254,12 +259,13 @@
       "type": "selector",
       "outbounds": [
         "direct",
+        "♻️ 自动选择",
+        "🐸 手动选择",
         "🇨🇳 台湾节点-自动",
         "🇯🇵 日本节点-自动",
         "🇸🇬 新加坡节点-自动",
         "🇺🇲 美国节点-自动",
-        "🇭🇰 香港节点-自动",
-        "♻️ 自动选择"
+        "🇭🇰 香港节点-自动"
       ],
       "default": "🐸 手动选择"
     },
@@ -337,7 +343,7 @@
         "🇭🇰 香港节点-自动",
         "♻️ 自动选择"
       ],
-      "default": "♻️ 自动选择"
+      "default": "🐸 手动切换"
     },
     {
       "tag": "🇨🇳 台湾节点-自动",
