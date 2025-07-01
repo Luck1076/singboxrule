@@ -93,8 +93,7 @@
       "type": "tun",
       "tag": "tun-in",
       "address": [
-        "172.18.0.1/30",
-        "fdfe:dcba:9876::1/126"
+        "172.18.0.1/30"
       ],
       "auto_route": true,
       "strict_route": true,
@@ -310,7 +309,7 @@
   "route": {
     "auto_detect_interface": true,
     "override_android_vpn": true,
-    "final": "直连",
+    "final": "默认出站",
     "rules": [
       {
         "inbound": [
