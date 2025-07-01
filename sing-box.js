@@ -16,25 +16,25 @@ let proxies = await produceArtifact({
 config.outbounds.push(...proxies)
 
 config.outbounds.map(i => {
-  if (['all', '♻️ 自动选择'].includes(i.tag)) {
+  if (['日韩台新'].includes(i.tag)) {
+    i.outbounds.push(...getTags(proxies, /日|韩|台|新|hk|tw|jp|sg|as/i))
+  }
+  if (['单选节点'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies))
   }
-   if (['all', '🐸 手动选择'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies))
-  }
-  if (['🇭🇰 香港节点', '🇭🇰 香港节点-自动'].includes(i.tag)) {
+  if (['香港节点'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies, /港|hk|hongkong|kong kong|🇭🇰/i))
   }
-  if (['🇨🇳 台湾节点', '🇨🇳 台湾节点-自动'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies,  /台|tw|taiwan|🇹🇼/i))
+  if (['台湾节点', '🇨🇳 台湾节点-自动'].includes(i.tag)) {
+    i.outbounds.push(...getTags(proxies, /台|tw|taiwan|🇹🇼/i))
   }
-  if (['🇯🇵 日本节点', '🇯🇵 日本节点-自动'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies,  /日本|jp|japan|🇯🇵/i))
+  if (['日本节点', '🇯🇵 日本节点-自动'].includes(i.tag)) {
+    i.outbounds.push(...getTags(proxies, /日本|jp|japan|🇯🇵/i))
   }
-  if (['🇸🇬 新加坡节点', '🇸🇬 新加坡节点-自动'].includes(i.tag)) {
+  if (['新加坡节点', '🇸🇬 新加坡节点-自动'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies, /^(?!.*(?:us)).*(新|sg|singapore|🇸🇬)/i))
   }
-  if (['🇺🇲 美国节点', '🇺🇲 美国节点-自动'].includes(i.tag)) {
+  if (['美国节点', '🇺🇲 美国节点-自动'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies, /美|us|unitedstates|united states|🇺🇸/i))
   }
 })
