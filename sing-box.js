@@ -37,6 +37,9 @@ config.outbounds.map(i => {
   if (['美国节点', '🇺🇲 美国节点-自动'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies, /美|us|unitedstates|united states|🇺🇸/i))
   }
+   if (['韩国节点'].includes(i.tag)) {
+    i.outbounds.push(...getTags(proxies, /韩/i))
+  }
 })
 
 config.outbounds.forEach(outbound => {
