@@ -210,6 +210,23 @@
       "interrupt_exist_connections": true
     },
     {
+      "tag": "github",
+      "type": "selector",
+      "outbounds": [
+        "默认出站",
+        "直连",
+        "日韩台新",
+        "单选节点",
+        "香港节点",
+        "日本节点",
+        "韩国节点",
+        "台湾节点",
+        "新加坡节点",
+        "美国节点"
+      ],
+      "interrupt_exist_connections": true
+    },
+    {
       "tag": "OneDrive",
       "type": "selector",
       "outbounds": [
@@ -393,6 +410,11 @@
         "outbound": "🎮 Game"
       },
       {
+        "rule_set": "github",
+        "action": "route",
+        "outbound": "github"
+      },
+      {
         "rule_set": [
           "geoip_google",
           "geosite_google"
@@ -515,6 +537,14 @@
         "type": "remote",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cn.srs",
+        "download_detour": "直连",
+        "update_interval": "3d"
+      },
+      {
+        "tag": "github",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/github.srs",
         "download_detour": "直连",
         "update_interval": "3d"
       }
