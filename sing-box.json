@@ -1,7 +1,7 @@
 {
   "log": {
     "disabled": false,
-    "level": "error",
+    "level": "debug",
     "timestamp": true
   },
   "experimental": {
@@ -227,7 +227,7 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "OneDrive",
+      "tag": "telegram",
       "type": "selector",
       "outbounds": [
         "默认出站",
@@ -415,17 +415,17 @@
         "outbound": "github"
       },
       {
+        "rule_set": "telegram",
+        "action": "route",
+        "outbound": "telegram"
+      },
+      {
         "rule_set": [
           "geoip_google",
           "geosite_google"
         ],
         "action": "route",
         "outbound": "Google"
-      },
-      {
-        "rule_set": "geosite_onedrive",
-        "action": "route",
-        "outbound": "☁️ OneDrive"
       },
       {
         "rule_set": "geosite_openai",
@@ -493,10 +493,10 @@
         "update_interval": "3d"
       },
       {
-        "tag": "geosite_onedrive",
+        "tag": "telegram",
         "type": "remote",
         "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/onedrive.srs",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/telegram.srs",
         "download_detour": "直连",
         "update_interval": "3d"
       },

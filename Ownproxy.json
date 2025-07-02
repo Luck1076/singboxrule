@@ -2,15 +2,12 @@
   "version": 2,
   "rules": [
     {
-      "domain": [
-        
-      ],
+      "domain": [],
       "domain_keyword": [
-
+        "xxai",
+        "xn--mesx3htbz31e"
       ],
-      "domain_suffix": [
-        
-      ]
+      "domain_suffix": []
     }
   ]
 }
