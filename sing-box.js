@@ -17,13 +17,13 @@ config.outbounds.push(...proxies)
 
 config.outbounds.map(i => {
   if (['日韩台新'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /日|韩|台|新|hk|tw|jp|sg|asia|HongKong|TaiWan|Japan|singapore/i))
+    i.outbounds.push(...getTags(proxies, /日|韩|台|新|hk|tw|jp|sg|asia|HongKong|TaiWan|Japan|singapore|港|hk|hongkong|Hong Kong|🇭🇰/i))
   }
   if (['单选节点'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies))
   }
   if (['香港节点'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /港|hk|hongkong|kong kong|🇭🇰/i))
+    i.outbounds.push(...getTags(proxies, /港|hk|hongkong|Hong Kong|🇭🇰/i))
   }
   if (['台湾节点', '🇨🇳 台湾节点-自动'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies, /台|tw|taiwan|🇹🇼/i))
