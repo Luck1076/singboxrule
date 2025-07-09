@@ -3,12 +3,14 @@
     "rules": [
         {
             "domain": [
-                "steamcdn-a.akamaihd.net"
+                "steamcdn-a.akamaihd.net","www.themoviedb.org"
             ],
             "domain_suffix": [
                 "*.cm.steampowered.com",
-                "*.steamserver.net"
-            ]
+                "*.steamserver.net",
+                "*.themoviedb.org"
+            ],
+            "domain_keyword": []
         }
     ]
 }
