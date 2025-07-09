@@ -104,12 +104,6 @@
       "exclude_package": [
         "com.android.captiveportallogin"
       ]
-    },
-    {
-      "type": "mixed",
-      "tag": "mixed-in",
-      "listen": "::",
-      "listen_port": 7890
     }
   ],
   "outbounds": [
@@ -220,63 +214,6 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "Google",
-      "type": "selector",
-      "outbounds": [
-        "默认出站",
-        "直连",
-        "日韩台新",
-        "单选节点",
-        "香港节点",
-        "日本节点",
-        "韩国节点",
-        "台湾节点",
-        "新加坡节点",
-        "美国节点",
-        "lemon",
-        "全部自动"
-      ],
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "github",
-      "type": "selector",
-      "outbounds": [
-        "默认出站",
-        "直连",
-        "日韩台新",
-        "单选节点",
-        "香港节点",
-        "日本节点",
-        "韩国节点",
-        "台湾节点",
-        "新加坡节点",
-        "美国节点",
-        "lemon",
-        "全部自动"
-      ],
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "telegram",
-      "type": "selector",
-      "outbounds": [
-        "默认出站",
-        "直连",
-        "日韩台新",
-        "单选节点",
-        "香港节点",
-        "日本节点",
-        "韩国节点",
-        "台湾节点",
-        "新加坡节点",
-        "美国节点",
-        "lemon",
-        "全部自动"
-      ],
-      "interrupt_exist_connections": true
-    },
-    {
       "tag": "香港节点",
       "type": "urltest",
       "outbounds": [],
@@ -342,7 +279,6 @@
     "rules": [
       {
         "inbound": [
-          "mixed-in",
           "tun-in"
         ],
         "action": "sniff"
@@ -409,24 +345,6 @@
         "outbound": "🎮 Game"
       },
       {
-        "rule_set": "github",
-        "action": "route",
-        "outbound": "github"
-      },
-      {
-        "rule_set": "telegram",
-        "action": "route",
-        "outbound": "telegram"
-      },
-      {
-        "rule_set": [
-          "geoip_google",
-          "geosite_google"
-        ],
-        "action": "route",
-        "outbound": "Google"
-      },
-      {
         "rule_set": "geosite_geolocation-!cn",
         "action": "route",
         "outbound": "默认出站"
@@ -465,30 +383,7 @@
         "download_detour": "直连",
         "update_interval": "3d"
       },
-      {
-        "tag": "geoip_google",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/google.srs",
-        "download_detour": "直连",
-        "update_interval": "3d"
-      },
-      {
-        "tag": "geosite_google",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/google.srs",
-        "download_detour": "直连",
-        "update_interval": "3d"
-      },
-      {
-        "tag": "telegram",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/telegram.srs",
-        "download_detour": "直连",
-        "update_interval": "3d"
-      },
+     
       {
         "tag": "geosite_geolocation-!cn",
         "type": "remote",
@@ -510,14 +405,6 @@
         "type": "remote",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cn.srs",
-        "download_detour": "直连",
-        "update_interval": "3d"
-      },
-      {
-        "tag": "github",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/github.srs",
         "download_detour": "直连",
         "update_interval": "3d"
       }

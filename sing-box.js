@@ -40,6 +40,13 @@ config.outbounds.map(i => {
    if (['韩国节点'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies, /韩/i))
   }
+   if (['全部自动'].includes(i.tag)) {
+    i.outbounds.push(...getTags(proxies))
+  }
+  if (['lemon'].includes(i.tag)) {
+    i.outbounds.push(...getTags(proxies,/vip/i))
+  }
+
 })
 
 config.outbounds.forEach(outbound => {
