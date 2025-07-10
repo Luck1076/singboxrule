@@ -30,7 +30,7 @@
       },
       {
         "tag": "中国 DNS",
-        "address": "https://dns.alidns.com/dns-query",
+        "address": "https://doh.pub/dns-query",
         "address_resolver": "CNNIC DNS",
         "detour": "直连"
       },

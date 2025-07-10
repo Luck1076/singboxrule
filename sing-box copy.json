@@ -8,80 +8,42 @@
     "clash_api": {
       "external_controller": "0.0.0.0:9090",
       "external_ui": "ui",
-      "external_ui_download_url": "https://ghproxy.net/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
-      "external_ui_download_detour": "直连",
-      "secret": "",
-      "default_mode": "rule",
-      "access_control_allow_origin": "*",
-      "access_control_allow_private_network": false
-    },
-    "cache_file": {
-      "enabled": true,
-      "store_rdrc": true
+      "secret": "luck1076",
+      "external_ui_download_url": "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip",
+      "external_ui_download_detour": "全部自动"
     }
   },
   "dns": {
     "servers": [
       {
-        "tag": "国际 DNS",
+        "tag": "dns_proxy",
         "address": "https://dns.google/dns-query",
-        "address_resolver": "CNNIC DNS",
+        "address_resolver": "dns_resolver",
         "detour": "默认出站"
       },
       {
-        "tag": "中国 DNS",
-        "address": "https://dns.alidns.com/dns-query",
-        "address_resolver": "CNNIC DNS",
+        "tag": "dns_direct",
+        "address": "https://doh.pub/dns-query",
+        "address_resolver": "dns_resolver",
         "detour": "直连"
       },
       {
-        "tag": "CNNIC DNS",
-        "address": "1.2.4.8",
+        "tag": "dns_resolver",
+        "address": "119.29.29.29",
         "detour": "直连"
+      },
+      {
+        "tag": "dns_block",
+        "address": "rcode://refused"
       }
     ],
     "rules": [
       {
         "outbound": "any",
-        "action": "route",
-        "server": "中国 DNS",
-        "rewrite_ttl": 3600
-      },
-      {
-        "clash_mode": "direct",
-        "action": "route",
-        "server": "中国 DNS",
-        "rewrite_ttl": 3600
-      },
-      {
-        "clash_mode": "global",
-        "action": "route",
-        "server": "国际 DNS",
-        "rewrite_ttl": 3600
-      },
-      {
-        "rule_set": "geosite_cn",
-        "action": "route",
-        "server": "中国 DNS",
-        "rewrite_ttl": 3600
-      },
-      {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          {
-            "rule_set": "geosite_geolocation-!cn",
-            "invert": true
-          },
-          {
-            "rule_set": "geoip_cn"
-          }
-        ],
-        "server": "国际 DNS",
-        "client_subnet": "1.2.4.8/24"
+        "server": "dns_resolver"
       }
     ],
-    "final": "国际 DNS",
+    "final": "dns_proxy",
     "strategy": "prefer_ipv4",
     "disable_cache": false,
     "disable_expire": false,
@@ -100,37 +62,15 @@
       "strict_route": true,
       "auto_redirect": true,
       "endpoint_independent_nat": false,
-      "stack": "system",
-      "exclude_package": [
-        "com.android.captiveportallogin"
-      ]
+      "stack": "mixed",
+      "sniff": true
     }
   ],
   "outbounds": [
     {
-      "tag": "默认出站",
+      "tag": "单选节点",
       "type": "selector",
-      "outbounds": [
-        "日韩台新",
-        "单选节点",
-        "香港节点",
-        "日本节点",
-        "韩国节点",
-        "台湾节点",
-        "新加坡节点",
-        "美国节点",
-        "lemon",
-        "全部自动"
-      ],
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "lemon",
-      "type": "urltest",
       "outbounds": [],
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": "10m",
-      "tolerance": 10,
       "interrupt_exist_connections": true
     },
     {
@@ -143,123 +83,19 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "漏网之鱼",
+      "tag": "默认出站",
       "type": "selector",
       "outbounds": [
         "直连",
-        "日韩台新",
         "单选节点",
-        "香港节点",
-        "日本节点",
-        "韩国节点",
-        "台湾节点",
-        "新加坡节点",
-        "美国节点",
-        "lemon",
-        "全部自动"
+        "全部自动",
+        "lemon"
       ],
-      "interrupt_exist_connections": true
+      "interrupt_exist_connections": true,
+      "default": "全部自动"
     },
     {
-      "tag": "日韩台新",
-      "type": "urltest",
-      "outbounds": [],
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": "10m",
-      "tolerance": 10,
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "单选节点",
-      "type": "selector",
-      "outbounds": [],
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "Downloader",
-      "type": "selector",
-      "outbounds": [
-        "直连",
-        "默认出站",
-        "日韩台新",
-        "单选节点",
-        "香港节点",
-        "日本节点",
-        "韩国节点",
-        "台湾节点",
-        "新加坡节点",
-        "美国节点",
-        "lemon",
-        "全部自动"
-      ],
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "🎮 Game",
-      "type": "selector",
-      "outbounds": [
-        "默认出站",
-        "直连",
-        "日韩台新",
-        "单选节点",
-        "香港节点",
-        "日本节点",
-        "韩国节点",
-        "台湾节点",
-        "新加坡节点",
-        "美国节点",
-        "lemon",
-        "全部自动"
-      ],
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "香港节点",
-      "type": "urltest",
-      "outbounds": [],
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": "10m",
-      "tolerance": 10,
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "日本节点",
-      "type": "urltest",
-      "outbounds": [],
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": "10m",
-      "tolerance": 10,
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "韩国节点",
-      "type": "urltest",
-      "outbounds": [],
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": "10m",
-      "tolerance": 10,
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "台湾节点",
-      "type": "urltest",
-      "outbounds": [],
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": "10m",
-      "tolerance": 10,
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "新加坡节点",
-      "type": "urltest",
-      "outbounds": [],
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": "10m",
-      "tolerance": 10,
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "美国节点",
+      "tag": "lemon",
       "type": "urltest",
       "outbounds": [],
       "url": "http://www.gstatic.com/generate_204",
@@ -270,11 +106,49 @@
     {
       "tag": "直连",
       "type": "direct"
+    },
+    {
+      "tag": "漏网之鱼",
+      "type": "selector",
+      "outbounds": [
+        "直连",
+        "单选节点",
+        "lemon",
+        "全部自动"
+      ],
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "拒绝",
+      "type": "block"
+    },
+    {
+      "tag": "telegram",
+      "type": "selector",
+      "outbounds": [
+        "直连",
+        "单选节点",
+        "lemon",
+        "全部自动"
+      ],
+      "interrupt_exist_connections": true,
+      "default": "全部自动"
+    },
+    {
+      "tag": "gamedownload",
+      "type": "selector",
+      "outbounds": [
+        "直连",
+        "单选节点",
+        "lemon",
+        "全部自动"
+      ],
+      "interrupt_exist_connections": true,
+      "default":"直连"
     }
   ],
   "route": {
     "auto_detect_interface": true,
-    "override_android_vpn": true,
     "final": "漏网之鱼",
     "rules": [
       {
@@ -297,6 +171,11 @@
         "action": "hijack-dns"
       },
       {
+        "protocol": "bittorrent",
+        "action": "route",
+        "outbound": "直连"
+      },
+      {
         "ip_is_private": true,
         "action": "route",
         "outbound": "直连"
@@ -312,101 +191,75 @@
         "outbound": "默认出站"
       },
       {
-        "protocol": "bittorrent",
-        "action": "route",
-        "outbound": "直连"
-      },
-      {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          {
-            "rule_set": "downloader"
-          },
-          {
-            "rule_set": [
-              "geoip_cn",
-              "geosite_cn"
-            ],
-            "invert": true
-          }
+        "rule_set":[
+          "gamedownload"
         ],
-        "action": "route",
-        "outbound": "📥 Downloader"
-      },
-      {
-        "rule_set": "geosite_category-games@cn",
-        "action": "route",
-        "outbound": "直连"
-      },
-      {
-        "rule_set": "geosite_category-games",
-        "action": "route",
-        "outbound": "🎮 Game"
-      },
-      {
-        "rule_set": "geosite_geolocation-!cn",
-        "action": "route",
-        "outbound": "默认出站"
+        "action":"route",
+        "outbound":"gamedownload"
       },
       {
         "rule_set": [
-          "geoip_cn",
-          "geosite_cn"
+          "qbt"
         ],
         "action": "route",
         "outbound": "直连"
+      },
+      {
+        "rule_set": [
+          "telegram_ip",
+          "telegram_site"
+        ],
+        "action": "route",
+        "outbound": "telegram"
+      },
+      {
+        "rule_set": [
+          "site!cn"
+        ],
+        "action": "route",
+        "outbound": "默认出站"
       }
     ],
     "rule_set": [
       {
-        "tag": "downloader",
+        "tag": "qbt",
         "type": "remote",
         "format": "binary",
         "url": "https://gitlab.com/senzyo_sama/as-gist/-/raw/master/Rule/sing-box/downloader.srs",
         "download_detour": "直连",
-        "update_interval": "3d"
+        "update_interval": "1d"
       },
       {
-        "tag": "geosite_category-games@cn",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-games@cn.srs",
-        "download_detour": "直连",
-        "update_interval": "3d"
-      },
-      {
-        "tag": "geosite_category-games",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-games.srs",
-        "download_detour": "直连",
-        "update_interval": "3d"
-      },
-     
-      {
-        "tag": "geosite_geolocation-!cn",
+        "tag": "site!cn",
         "type": "remote",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-!cn.srs",
         "download_detour": "直连",
-        "update_interval": "3d"
+        "update_interval": "1d"
       },
       {
-        "tag": "geoip_cn",
+        "tag": "telegram_ip",
         "type": "remote",
         "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/cn.srs",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/telegram.srs",
         "download_detour": "直连",
-        "update_interval": "3d"
+        "update_interval": "1d"
       },
       {
-        "tag": "geosite_cn",
+        "tag": "telegram_site",
         "type": "remote",
         "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cn.srs",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/telegram.srs",
         "download_detour": "直连",
-        "update_interval": "3d"
+        "update_interval": "1d"
+      },
+      {
+        "tag": "gamedownload",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-game-platforms-download.srs",
+        "download_detour": "直连",
+        "update_interval": "1d"
       }
     ]
   }
