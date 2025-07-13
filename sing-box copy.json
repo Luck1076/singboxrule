@@ -19,7 +19,7 @@
         "tag": "dns_proxy",
         "address": "https://dns.google/dns-query",
         "address_resolver": "dns_resolver",
-        "detour": "默认出站"
+        "detour": "全部自动"
       },
       {
         "tag": "dns_direct",
@@ -56,7 +56,7 @@
       "tag": "tun-in",
       "address": [
         "172.18.0.1/30",
-        "fd00:1234:5678:9abc::1/64"
+        "fd00::1/126"
       ],
       "auto_route": true,
       "strict_route": true,
@@ -68,9 +68,29 @@
   ],
   "outbounds": [
     {
-      "tag": "单选节点",
+      "tag": "直连",
+      "type": "direct"
+    },
+    {
+      "tag": "拒绝",
+      "type": "block"
+    },
+    {
+      "tag": "漏网之鱼",
       "type": "selector",
-      "outbounds": [],
+      "outbounds": [
+        "直连",
+        "单选节点",
+        "lemon",
+        "默认出站",
+        "全部自动",
+        "香港",
+        "美国",
+        "台湾",
+        "新加坡",
+        "日本",
+        "韩国"
+      ],
       "interrupt_exist_connections": true
     },
     {
@@ -83,16 +103,85 @@
       "interrupt_exist_connections": true
     },
     {
+      "tag": "单选节点",
+      "type": "selector",
+      "outbounds": [],
+      "interrupt_exist_connections": true
+    },
+    {
       "tag": "默认出站",
       "type": "selector",
       "outbounds": [
         "直连",
         "单选节点",
         "全部自动",
-        "lemon"
+        "lemon",
+        "香港",
+        "美国",
+        "台湾",
+        "新加坡",
+        "日本",
+        "韩国"
       ],
       "interrupt_exist_connections": true,
       "default": "全部自动"
+    },
+    {
+      "tag": "cloudflare",
+      "type": "selector",
+      "outbounds": [
+        "直连",
+        "单选节点",
+        "lemon",
+        "默认出站",
+        "全部自动",
+        "香港",
+        "美国",
+        "台湾",
+        "新加坡",
+        "日本",
+        "韩国"
+      ],
+      "interrupt_exist_connections": true,
+      "default": "直连"
+    },
+    {
+      "tag": "google",
+      "type": "selector",
+      "outbounds": [
+        "直连",
+        "单选节点",
+        "lemon",
+        "默认出站",
+        "全部自动",
+        "香港",
+        "美国",
+        "台湾",
+        "新加坡",
+        "日本",
+        "韩国"
+      ],
+      "interrupt_exist_connections": true,
+      "default": "默认出站"
+    },
+    {
+      "tag": "gamedownload",
+      "type": "selector",
+      "outbounds": [
+        "直连",
+        "单选节点",
+        "lemon",
+        "默认出站",
+        "全部自动",
+        "香港",
+        "美国",
+        "台湾",
+        "新加坡",
+        "日本",
+        "韩国"
+      ],
+      "interrupt_exist_connections": true,
+      "default": "直连"
     },
     {
       "tag": "lemon",
@@ -104,23 +193,23 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "直连",
-      "type": "direct"
-    },
-    {
-      "tag": "漏网之鱼",
+      "tag": "qbt",
       "type": "selector",
       "outbounds": [
         "直连",
         "单选节点",
         "lemon",
-        "全部自动"
+        "默认出站",
+        "全部自动",
+        "香港",
+        "美国",
+        "台湾",
+        "新加坡",
+        "日本",
+        "韩国"
       ],
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "拒绝",
-      "type": "block"
+      "interrupt_exist_connections": true,
+      "default": "直连"
     },
     {
       "tag": "telegram",
@@ -129,22 +218,90 @@
         "直连",
         "单选节点",
         "lemon",
-        "全部自动"
+        "默认出站",
+        "全部自动",
+        "香港",
+        "美国",
+        "台湾",
+        "新加坡",
+        "日本",
+        "韩国"
       ],
       "interrupt_exist_connections": true,
       "default": "全部自动"
     },
     {
-      "tag": "gamedownload",
+      "tag": "youtube",
       "type": "selector",
       "outbounds": [
         "直连",
         "单选节点",
         "lemon",
-        "全部自动"
+        "默认出站",
+        "全部自动",
+        "香港",
+        "美国",
+        "台湾",
+        "新加坡",
+        "日本",
+        "韩国"
       ],
       "interrupt_exist_connections": true,
-      "default":"直连"
+      "default": "默认出站"
+    },
+    {
+      "tag": "香港",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 10,
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "美国",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 10,
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "台湾",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 10,
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "新加坡",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 10,
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "日本",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 10,
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "韩国",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 10,
+      "interrupt_exist_connections": true
     }
   ],
   "route": {
@@ -171,9 +328,13 @@
         "action": "hijack-dns"
       },
       {
+        "protocol": "quic",
+        "outbound": "拒绝"
+      },
+      {
         "protocol": "bittorrent",
         "action": "route",
-        "outbound": "直连"
+        "outbound": "qbt"
       },
       {
         "ip_is_private": true,
@@ -191,18 +352,53 @@
         "outbound": "默认出站"
       },
       {
-        "rule_set":[
+        "domain_suffix": [
+          "yz006.xyz"
+        ],
+        "outbound": "默认出站"
+      },
+      {
+        "domain_suffix": [
+          "steamserver.net",
+          "steamcontent.com",
+          "luck1076.top",
+          "tmdb.org",
+          "themoviedb.org",
+          "s1.z100.vip",
+          "yjwujian.cn"
+        ],
+        "outbound": "直连"
+      },
+      {
+        "rule_set": [
+          "netease",
+          "bilibili",
+          "wps",
+          "microsoft@cn"
+        ],
+        "action": "route",
+        "outbound": "直连"
+      },
+      {
+        "rule_set": [
           "gamedownload"
         ],
-        "action":"route",
-        "outbound":"gamedownload"
+        "action": "route",
+        "outbound": "gamedownload"
       },
       {
         "rule_set": [
           "qbt"
         ],
         "action": "route",
-        "outbound": "直连"
+        "outbound": "qbt"
+      },
+      {
+        "rule_set": [
+          "cloudflare"
+        ],
+        "action": "route",
+        "outbound": "cloudflare"
       },
       {
         "rule_set": [
@@ -211,6 +407,36 @@
         ],
         "action": "route",
         "outbound": "telegram"
+      },
+      {
+        "rule_set": [
+          "youtube"
+        ],
+        "action": "route",
+        "outbound": "youtube"
+      },
+      {
+        "rule_set": [
+          "googleip",
+          "googlesite"
+        ],
+        "action": "route",
+        "outbound": "google"
+      },
+      {
+        "rule_set": [
+          "cnip",
+          "cnsite"
+        ],
+        "action": "route",
+        "outbound": "直连"
+      },
+      {
+        "rule_set": [
+          "proxy"
+        ],
+        "action": "route",
+        "outbound": "默认出站"
       },
       {
         "rule_set": [
@@ -258,6 +484,94 @@
         "type": "remote",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-game-platforms-download.srs",
+        "download_detour": "直连",
+        "update_interval": "1d"
+      },
+      {
+        "tag": "cnip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/cn.srs",
+        "download_detour": "直连",
+        "update_interval": "1d"
+      },
+      {
+        "tag": "cnsite",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cn.srs",
+        "download_detour": "直连",
+        "update_interval": "1d"
+      },
+      {
+        "tag": "youtube",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/youtube.srs",
+        "download_detour": "直连",
+        "update_interval": "1d"
+      },
+      {
+        "tag": "cloudflare",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cloudflare.srs",
+        "download_detour": "直连",
+        "update_interval": "1d"
+      },
+      {
+        "tag": "proxy",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo-lite/geosite/proxy.srs",
+        "download_detour": "直连",
+        "update_interval": "1d"
+      },
+      {
+        "tag": "googlesite",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/google.srs",
+        "download_detour": "直连",
+        "update_interval": "1d"
+      },
+      {
+        "tag": "googleip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/google.srs",
+        "download_detour": "直连",
+        "update_interval": "1d"
+      },
+      {
+        "tag": "netease",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/netease.srs",
+        "download_detour": "直连",
+        "update_interval": "1d"
+      },
+      {
+        "tag": "bilibili",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/bilibili.srs",
+        "download_detour": "直连",
+        "update_interval": "1d"
+      },
+      {
+        "tag": "wps",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/wps.srs",
+        "download_detour": "直连",
+        "update_interval": "1d"
+      },
+      {
+        "tag": "microsoft@cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/microsoft@cn.srs",
         "download_detour": "直连",
         "update_interval": "1d"
       }
