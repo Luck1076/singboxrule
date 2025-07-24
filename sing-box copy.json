@@ -9,8 +9,8 @@
       "external_controller": "0.0.0.0:9090",
       "external_ui": "ui",
       "secret": "luck1076",
-      "external_ui_download_url": "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip",
-      "external_ui_download_detour": "全部自动"
+      "external_ui_download_url": "https://gh.luckly1076.top/https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip",
+      "external_ui_download_detour": "直连"
     }
   },
   "dns": {
@@ -44,7 +44,7 @@
       }
     ],
     "final": "dns_proxy",
-    "strategy": "prefer_ipv4",
+    "strategy": "ipv4_only",
     "disable_cache": false,
     "disable_expire": false,
     "independent_cache": true,
@@ -98,7 +98,7 @@
       "type": "urltest",
       "outbounds": [],
       "url": "http://www.gstatic.com/generate_204",
-      "interval": "10m",
+      "interval": "30s",
       "tolerance": 10,
       "interrupt_exist_connections": true
     },
@@ -127,6 +127,60 @@
       "default": "全部自动"
     },
     {
+      "tag": "香港",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "30s",
+      "tolerance": 10,
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "美国",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "30s",
+      "tolerance": 10,
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "台湾",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "30s",
+      "tolerance": 10,
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "新加坡",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "30s",
+      "tolerance": 10,
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "日本",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "30s",
+      "tolerance": 10,
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "韩国",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "30s",
+      "tolerance": 10,
+      "interrupt_exist_connections": true
+    },
+    {
       "tag": "cloudflare",
       "type": "selector",
       "outbounds": [
@@ -143,7 +197,26 @@
         "韩国"
       ],
       "interrupt_exist_connections": true,
-      "default": "直连"
+      "default": "默认出站"
+    },
+    {
+      "tag": "discord",
+      "type": "selector",
+      "outbounds": [
+        "直连",
+        "单选节点",
+        "lemon",
+        "默认出站",
+        "全部自动",
+        "香港",
+        "美国",
+        "台湾",
+        "新加坡",
+        "日本",
+        "韩国"
+      ],
+      "interrupt_exist_connections": true,
+      "default": "默认出站"
     },
     {
       "tag": "google",
@@ -162,7 +235,7 @@
         "韩国"
       ],
       "interrupt_exist_connections": true,
-      "default": "默认出站"
+      "default": "lemon"
     },
     {
       "tag": "gamedownload",
@@ -188,7 +261,7 @@
       "type": "urltest",
       "outbounds": [],
       "url": "http://www.gstatic.com/generate_204",
-      "interval": "10m",
+      "interval": "30s",
       "tolerance": 10,
       "interrupt_exist_connections": true
     },
@@ -247,61 +320,7 @@
         "韩国"
       ],
       "interrupt_exist_connections": true,
-      "default": "默认出站"
-    },
-    {
-      "tag": "香港",
-      "type": "urltest",
-      "outbounds": [],
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": "10m",
-      "tolerance": 10,
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "美国",
-      "type": "urltest",
-      "outbounds": [],
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": "10m",
-      "tolerance": 10,
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "台湾",
-      "type": "urltest",
-      "outbounds": [],
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": "10m",
-      "tolerance": 10,
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "新加坡",
-      "type": "urltest",
-      "outbounds": [],
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": "10m",
-      "tolerance": 10,
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "日本",
-      "type": "urltest",
-      "outbounds": [],
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": "10m",
-      "tolerance": 10,
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "韩国",
-      "type": "urltest",
-      "outbounds": [],
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": "10m",
-      "tolerance": 10,
-      "interrupt_exist_connections": true
+      "default": "lemon"
     }
   ],
   "route": {
@@ -332,7 +351,18 @@
         "outbound": "拒绝"
       },
       {
-        "protocol": "bittorrent",
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "protocol": "bittorrent"
+          },
+          {
+            "rule_set": [
+              "qbt"
+            ]
+          }
+        ],
         "action": "route",
         "outbound": "qbt"
       },
@@ -353,7 +383,10 @@
       },
       {
         "domain_suffix": [
-          "yz006.xyz"
+          "yz006.xyz",
+          "flsubcn.cc",
+          "opensubtitles.org",
+          "69shuba.com"
         ],
         "outbound": "默认出站"
       },
@@ -362,10 +395,13 @@
           "steamserver.net",
           "steamcontent.com",
           "luck1076.top",
-          "tmdb.org",
-          "themoviedb.org",
           "s1.z100.vip",
-          "yjwujian.cn"
+          "yjwujian.cn",
+          "luckly1076.top",
+          "modrinth.com",
+          "themoviedb.org",
+          "tmdb.org",
+          "snpmcmc.heimc.top"
         ],
         "outbound": "直连"
       },
@@ -374,7 +410,10 @@
           "netease",
           "bilibili",
           "wps",
-          "microsoft@cn"
+          "microsoft@cn",
+          "tencent",
+          "tencent-games@cn",
+          "xiaomi"
         ],
         "action": "route",
         "outbound": "直连"
@@ -385,13 +424,6 @@
         ],
         "action": "route",
         "outbound": "gamedownload"
-      },
-      {
-        "rule_set": [
-          "qbt"
-        ],
-        "action": "route",
-        "outbound": "qbt"
       },
       {
         "rule_set": [
@@ -407,6 +439,13 @@
         ],
         "action": "route",
         "outbound": "telegram"
+      },
+      {
+        "rule_set": [
+          "discord"
+        ],
+        "action": "route",
+        "outbound": "discord"
       },
       {
         "rule_set": [
@@ -572,6 +611,38 @@
         "type": "remote",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/microsoft@cn.srs",
+        "download_detour": "直连",
+        "update_interval": "1d"
+      },
+      {
+        "tag": "tencent",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/tencent.srs",
+        "download_detour": "直连",
+        "update_interval": "1d"
+      },
+      {
+        "tag": "tencent-games@cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/tencent-games@cn.srs",
+        "download_detour": "直连",
+        "update_interval": "1d"
+      },
+      {
+        "tag": "discord",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/discord.srs",
+        "download_detour": "直连",
+        "update_interval": "1d"
+      },
+      {
+        "tag": "xiaomi",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/xiaomi.srs",
         "download_detour": "直连",
         "update_interval": "1d"
       }

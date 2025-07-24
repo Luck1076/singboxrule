@@ -23,20 +23,20 @@ config.outbounds.map(i => {
   if (['香港'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies, /港|hk|hongkong|Hong Kong|🇭🇰/i))
   }
-  if (['台湾', '🇨🇳 台湾节点-自动'].includes(i.tag)) {
+  if (['台湾'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies, /台|tw|taiwan|🇹🇼/i))
   }
-  if (['日本', '🇯🇵 日本节点-自动'].includes(i.tag)) {
+  if (['日本'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies, /日本|jp|japan|🇯🇵/i))
   }
-  if (['新加坡', '🇸🇬 新加坡节点-自动'].includes(i.tag)) {
+  if (['新加坡'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies, /^(?!.*(?:us)).*(新|sg|singapore|🇸🇬)/i))
   }
-  if (['美国', '🇺🇲 美国节点-自动'].includes(i.tag)) {
+  if (['美国'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies, /美|unitedstates|united states|🇺🇸/i))
   }
   if (['韩国'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /韩/i))
+    i.outbounds.push(...getTags(proxies, /韩|Korea/i))
   }
   if (['全部自动'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies))
