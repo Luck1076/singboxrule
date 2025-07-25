@@ -41,11 +41,11 @@ profile:
 
 # 控制面板，external-ui 路径如果出现报错，根据你使用的插件进行调整，比如openclash改为： /etc/openclash/run/ui  ，裸核跑改为/etc/mihomo/run/ui
 # 因容易造成新手面板启动问题，我注释掉了，需要的自行开启
-#external-controller: 0.0.0.0:9090
-#secret: ""
-#external-ui: "/etc/nikki/run/ui"
-#external-ui-name: zashboard
-#external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
+external-controller: 0.0.0.0:9090
+secret: ""
+external-ui: "/etc/mihomo/run/ui"
+external-ui-name: zashboard
+external-ui-url: "https://gh.luckly1076.top/https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
 
 # 嗅探
 sniffer:
