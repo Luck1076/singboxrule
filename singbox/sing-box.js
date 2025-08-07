@@ -44,7 +44,9 @@ config.outbounds.map(i => {
   if (['lemon'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies, /vip/i))
   }
-
+  if (['CF自建'].includes(i.tag)) {
+    i.outbounds.push(...getTags(proxies, /CF/i))
+  }
 })
 
 config.outbounds.forEach(outbound => {

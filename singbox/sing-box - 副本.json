@@ -19,54 +19,125 @@
         "tag": "dns_proxy",
         "address": "https://dns.google/dns-query",
         "address_resolver": "dns_resolver",
-        "detour": "全部自动"
+        "strategy": "prefer_ipv4",
+        "detour": "默认出站"
       },
       {
         "tag": "dns_direct",
         "address": "https://doh.pub/dns-query",
         "address_resolver": "dns_resolver",
-        "detour": "直连"
-      },
-      {
-        "tag": "dns_resolver",
-        "address": "119.29.29.29",
+        "strategy": "prefer_ipv4",
         "detour": "直连"
       },
       {
         "tag": "dns_block",
         "address": "rcode://refused"
+      },
+      {
+        "tag": "dns_resolver",
+        "address": "119.28.28.28",
+        "strategy": "prefer_ipv4",
+        "detour": "直连"
       }
     ],
     "rules": [
       {
         "outbound": "any",
         "server": "dns_resolver"
+      },
+      {
+        "clash_mode": "direct",
+        "server": "dns_direct"
+      },
+      {
+        "clash_mode": "global",
+        "server": "dns_proxy"
+      },
+      {
+        "process_name": [
+          "TencentMeeting",
+          "NemoDesktop",
+          "ToDesk",
+          "ToDesk_Service",
+          "WeChat",
+          "Tailscale",
+          "wireguard-go",
+          "Tunnelblick",
+          "softwareupdated",
+          "kubectl"
+        ],
+        "server": "dns_direct"
+      },
+      {
+        "domain_suffix": [
+          "icloudnative.io",
+          "fuckcloudnative.io",
+          "sealos.io",
+          "luck1076.top",
+          "luckly1076.top",
+          "luck1076.dpdns.org"
+        ],
+        "server": "dns_direct"
+      },
+      {
+        "process_name": [
+          "DropboxMacUpdate",
+          "Dropbox"
+        ],
+        "server": "dns_proxy"
+      },
+      {
+        "package_name": [
+          "com.google.android.youtube",
+          "com.android.vending",
+          "org.telegram.messenger",
+          "org.telegram.plus"
+        ],
+        "server": "dns_proxy"
+      },
+      {
+        "rule_set": [
+          "site!cn"
+        ],
+        "server": "dns_proxy"
+      },
+      {
+        "rule_set": "Global",
+        "server": "dns_proxy"
+      },
+      {
+        "rule_set": [
+          "youtube",
+          "telegram_site",
+          "googleip",
+          "telegram_ip"
+        ],
+        "server": "dns_proxy"
       }
     ],
-    "final": "dns_proxy",
-    "strategy": "ipv4_only",
-    "disable_cache": false,
-    "disable_expire": false,
-    "independent_cache": true,
-    "reverse_mapping": false
+    "final": "dns_direct",
+    "strategy": "prefer_ipv4",
+    "disable_cache": true
   },
   "inbounds": [
     {
       "type": "tun",
       "tag": "tun-in",
+      "interface_name": "tun0",
       "address": [
         "172.18.0.1/30",
-        "fd00::1/126"
+        "fdfe:dcba:9876::1/126"
       ],
+      "mtu": 9000,
       "auto_route": true,
-      "strict_route": true,
-      "auto_redirect": true,
-      "endpoint_independent_nat": false,
-      "stack": "mixed",
-      "sniff": true
+      "auto_redirect": true
     }
   ],
   "outbounds": [
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    },
     {
       "tag": "直连",
       "type": "direct"
@@ -80,16 +151,8 @@
       "type": "selector",
       "outbounds": [
         "直连",
-        "单选节点",
-        "lemon",
         "默认出站",
-        "全部自动",
-        "香港",
-        "美国",
-        "台湾",
-        "新加坡",
-        "日本",
-        "韩国"
+        "CF自建"
       ],
       "interrupt_exist_connections": true
     },
@@ -121,10 +184,20 @@
         "台湾",
         "新加坡",
         "日本",
-        "韩国"
+        "韩国",
+        "CF自建"
       ],
       "interrupt_exist_connections": true,
       "default": "全部自动"
+    },
+    {
+      "tag": "CF自建",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "30s",
+      "tolerance": 10,
+      "interrupt_exist_connections": true
     },
     {
       "tag": "香港",
@@ -194,10 +267,11 @@
         "台湾",
         "新加坡",
         "日本",
-        "韩国"
+        "韩国",
+        "CF自建"
       ],
       "interrupt_exist_connections": true,
-      "default": "默认出站"
+      "default": "直连"
     },
     {
       "tag": "discord",
@@ -213,7 +287,8 @@
         "台湾",
         "新加坡",
         "日本",
-        "韩国"
+        "韩国",
+        "CF自建"
       ],
       "interrupt_exist_connections": true,
       "default": "默认出站"
@@ -232,10 +307,11 @@
         "台湾",
         "新加坡",
         "日本",
-        "韩国"
+        "韩国",
+        "CF自建"
       ],
       "interrupt_exist_connections": true,
-      "default": "lemon"
+      "default": "默认出站"
     },
     {
       "tag": "gamedownload",
@@ -251,7 +327,8 @@
         "台湾",
         "新加坡",
         "日本",
-        "韩国"
+        "韩国",
+        "CF自建"
       ],
       "interrupt_exist_connections": true,
       "default": "直连"
@@ -279,7 +356,8 @@
         "台湾",
         "新加坡",
         "日本",
-        "韩国"
+        "韩国",
+        "CF自建"
       ],
       "interrupt_exist_connections": true,
       "default": "直连"
@@ -298,10 +376,11 @@
         "台湾",
         "新加坡",
         "日本",
-        "韩国"
+        "韩国",
+        "CF自建"
       ],
       "interrupt_exist_connections": true,
-      "default": "全部自动"
+      "default": "默认出站"
     },
     {
       "tag": "youtube",
@@ -317,10 +396,11 @@
         "台湾",
         "新加坡",
         "日本",
-        "韩国"
+        "韩国",
+        "CF自建"
       ],
       "interrupt_exist_connections": true,
-      "default": "lemon"
+      "default": "默认出站"
     }
   ],
   "route": {
@@ -334,6 +414,10 @@
         "action": "sniff"
       },
       {
+        "inbound": "dns-in",
+        "outbound": "dns-out"
+      },
+      {
         "type": "logical",
         "mode": "or",
         "rules": [
@@ -345,10 +429,6 @@
           }
         ],
         "action": "hijack-dns"
-      },
-      {
-        "protocol": "quic",
-        "outbound": "拒绝"
       },
       {
         "type": "logical",
@@ -382,11 +462,19 @@
         "outbound": "默认出站"
       },
       {
+        "domain_keyword": [
+          "flsubcn",
+          "yz006"
+        ],
+        "outbound": "默认出站"
+      },
+      {
         "domain_suffix": [
-          "yz006.xyz",
-          "flsubcn.cc",
           "opensubtitles.org",
-          "69shuba.com"
+          "69shuba.com",
+          "a4k.net",
+          "firefox.com",
+          "infini.money"
         ],
         "outbound": "默认出站"
       },
@@ -643,6 +731,30 @@
         "type": "remote",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/xiaomi.srs",
+        "download_detour": "直连",
+        "update_interval": "1d"
+      },
+      {
+        "tag": "category-ads-all",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ads-all.srs",
+        "download_detour": "直连",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "Global",
+        "format": "binary",
+        "url": "https://gh.luckly1076.top/https://github.com/yangchuansheng/sing-box-geosite/blob/main/rule/Global.srs",
+        "download_detour": "直连",
+        "update_interval": "1d"
+      },
+      {
+        "type": "remote",
+        "tag": "gfw",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/gfw.srs",
         "download_detour": "直连",
         "update_interval": "1d"
       }
