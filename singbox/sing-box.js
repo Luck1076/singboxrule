@@ -16,7 +16,9 @@ let proxies = await produceArtifact({
 config.outbounds.push(...proxies)
 
 config.outbounds.map(i => {
-
+  if (['全部自动'].includes(i.tag)) {
+    i.outbounds.push(...getTags(proxies))
+  }
   if (['单选节点'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies))
   }
@@ -37,9 +39,6 @@ config.outbounds.map(i => {
   }
   if (['韩国'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies, /韩|Korea/i))
-  }
-  if (['全部自动'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies))
   }
   if (['lemon'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies, /vip/i))
