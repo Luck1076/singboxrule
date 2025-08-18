@@ -16,14 +16,6 @@
                "cnsite"
             ],
             "server": "local"
-         },
-         {
-            "query_type": [
-               "A",
-               "AAAA"
-            ],
-            "rewrite_ttl": 1,
-            "server": "fakeip"
          }
       ],
       "servers": [
@@ -39,16 +31,10 @@
             "type": "https"
          },
          {
-            "detour": "默认出站",
+            "detour": "全部自动",
             "server": "1.1.1.1",
             "tag": "foreign",
             "type": "https"
-         },
-         {
-            "inet4_range": "198.18.0.0/15",
-            "inet6_range": "fc00::/18",
-            "tag": "fakeip",
-            "type": "fakeip"
          }
       ],
       "strategy": "prefer_ipv4"
@@ -112,7 +98,7 @@
          "type": "selector"
       },
       {
-         "default": "单选节点",
+         "default": "全部自动",
          "interrupt_exist_connections": true,
          "outbounds": [
             "直连",
@@ -124,7 +110,8 @@
             "新加坡",
             "日本",
             "韩国",
-            "CF自建"
+            "CF自建",
+            "全部自动"
          ],
          "tag": "默认出站",
          "type": "selector"
@@ -191,26 +178,6 @@
          "tolerance": 10,
          "type": "urltest",
          "url": "http://www.gstatic.com/generate_204"
-      },
-      {
-         "default": "直连",
-         "interrupt_exist_connections": true,
-         "outbounds": [
-            "直连",
-            "单选节点",
-            "lemon",
-            "默认出站",
-            "全部自动",
-            "香港",
-            "美国",
-            "台湾",
-            "新加坡",
-            "日本",
-            "韩国",
-            "CF自建"
-         ],
-         "tag": "cloudflare",
-         "type": "selector"
       },
       {
          "default": "默认出站",
@@ -410,14 +377,6 @@
             "type": "remote",
             "update_interval": "1d",
             "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/youtube.srs"
-         },
-         {
-            "download_detour": "直连",
-            "format": "binary",
-            "tag": "cloudflare",
-            "type": "remote",
-            "update_interval": "1d",
-            "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cloudflare.srs"
          },
          {
             "download_detour": "直连",
@@ -632,7 +591,8 @@
                "snpmcmc.heimc.top",
                "luck1076.top",
                "luckly1076.top",
-               "luck1076.dpdns.org"
+               "luck1076.dpdns.org",
+               "1076luck.dpdns.org"
             ],
             "outbound": "直连"
          },
@@ -654,13 +614,6 @@
             "outbound": "gamedownload",
             "rule_set": [
                "gamedownload"
-            ]
-         },
-         {
-            "action": "route",
-            "outbound": "cloudflare",
-            "rule_set": [
-               "cloudflare"
             ]
          },
          {
