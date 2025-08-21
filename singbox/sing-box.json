@@ -603,8 +603,28 @@
       },
       {
         "domain_keyword": [
-          "flsubcn",
-          "yz006"
+          "cn",
+          "vercel",
+          "dl-z01a",
+          "luck1076"
+        ],
+        "outbound": "直连"
+      },
+      {
+        "domain_keyword": [
+          "ipwho.is",
+          "xn--mesx3htbz31e"
+        ],
+        "outbound": "默认出站"
+      },
+      {
+        "domain": [
+          "mypikpak.com",
+          "mypikpak.net",
+          "user.mypikpak.com",
+          "access.mypikpak.com",
+          "api-drive.mypikpak.com",
+          "api-drive.mypikpak.net"
         ],
         "outbound": "默认出站"
       },
@@ -614,7 +634,9 @@
           "69shuba.com",
           "a4k.net",
           "firefox.com",
-          "infini.money"
+          "infini.money",
+          "googleapis.cn",
+          "fast.com"
         ],
         "outbound": "默认出站"
       },
@@ -630,8 +652,10 @@
           "tmdb.org",
           "snpmcmc.heimc.top",
           "luck1076.top",
+          "luckly1076.top",
+          "luck1076.dpdns.org",
           "1076luck.dpdns.org",
-          "luck1076.dpdns.org"
+          "okx.com"
         ],
         "outbound": "直连"
       },
