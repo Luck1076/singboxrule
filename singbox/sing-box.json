@@ -320,26 +320,6 @@
       "url": "http://www.gstatic.com/generate_204"
     },
     {
-      "default": "直连",
-      "interrupt_exist_connections": true,
-      "outbounds": [
-        "直连",
-        "单选节点",
-        "lemon",
-        "默认出站",
-        "全部自动",
-        "香港",
-        "美国",
-        "台湾",
-        "新加坡",
-        "日本",
-        "韩国",
-        "CF自建"
-      ],
-      "tag": "qbt",
-      "type": "selector"
-    },
-    {
       "default": "默认出站",
       "interrupt_exist_connections": true,
       "outbounds": [
@@ -593,7 +573,7 @@
       {
         "action": "route",
         "mode": "or",
-        "outbound": "qbt",
+        "outbound": "直连",
         "rules": [
           {
             "protocol": "bittorrent"
