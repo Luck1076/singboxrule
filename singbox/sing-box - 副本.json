@@ -80,7 +80,8 @@
             "CF自建"
          ],
          "tag": "漏网之鱼",
-         "type": "selector"
+         "type": "selector",
+         "default": "默认出站"
       },
       {
          "interrupt_exist_connections": true,
@@ -247,26 +248,6 @@
          "tolerance": 10,
          "type": "urltest",
          "url": "http://www.gstatic.com/generate_204"
-      },
-      {
-         "default": "直连",
-         "interrupt_exist_connections": true,
-         "outbounds": [
-            "直连",
-            "单选节点",
-            "lemon",
-            "默认出站",
-            "全部自动",
-            "香港",
-            "美国",
-            "台湾",
-            "新加坡",
-            "日本",
-            "韩国",
-            "CF自建"
-         ],
-         "tag": "qbt",
-         "type": "selector"
       },
       {
          "default": "默认出站",
@@ -514,7 +495,7 @@
          {
             "action": "route",
             "mode": "or",
-            "outbound": "qbt",
+            "outbound": "直连",
             "rules": [
                {
                   "protocol": "bittorrent"
@@ -546,14 +527,15 @@
             "domain_keyword": [
                "cn",
                "vercel",
-               "dl-z01a"
+               "dl-z01a",
+               "luck1076"
             ],
             "outbound": "直连"
          },
          {
             "domain_keyword": [
-               "yz006",
-               "ipwho.is"
+               "ipwho.is",
+               "xn--mesx3htbz31e"
             ],
             "outbound": "默认出站"
          },
@@ -574,7 +556,9 @@
                "69shuba.com",
                "a4k.net",
                "firefox.com",
-               "infini.money"
+               "infini.money",
+               "googleapis.cn",
+               "fast.com"
             ],
             "outbound": "默认出站"
          },
@@ -592,7 +576,8 @@
                "luck1076.top",
                "luckly1076.top",
                "luck1076.dpdns.org",
-               "1076luck.dpdns.org"
+               "1076luck.dpdns.org",
+               "okx.com"
             ],
             "outbound": "直连"
          },
